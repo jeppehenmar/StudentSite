@@ -4,13 +4,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-
 public class Student {
     private int studentId;
     private String firstName;
     private String lastName;
     private String cpr;
-    //@DateTimeFormat(pattern = "dd-MM-yyyy");
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date enrollmentDate;
 
     public Student() {

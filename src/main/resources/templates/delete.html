@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Delete</title>
+    <link th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
+</head>
+
+<body>
+<div class="container">
+    <h1>Delete student</h1>
+    <h3>Are you sure you want to delete the selected student?</h3>
+    <form method="Post" th:action="@{/delete}">
+        <input class="btn btn-primary" type="submit" value="Yes"/>
+    </form>
+
+    <form method="Get" th:action="@{/}">
+        <input class="btn btn-primary" type="submit" value="No"/>
+    </form>
+</div>
+<script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
+</body>
+</html>
