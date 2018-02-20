@@ -10,13 +10,14 @@
 <div class="container">
     <h1>Delete student</h1>
     <h3>Are you sure you want to delete the selected student?</h3>
-    <form method="Post" th:action="@{/delete}">
-        <input class="btn btn-primary" type="submit" value="Yes"/>
+
+    <form action="#" th:action="@{/delete}" method="post">
+        <p th:text="${student.firstName + ' ' + student.lastName}"></p>
+        <input type="hidden" th:field="${student.studentId}"/>
+        <input class="btn btn-danger" type="submit" value="YES"/>
+        <a href="/" class="btn btn-create w">NO</a>
     </form>
 
-    <form method="Get" th:action="@{/}">
-        <input class="btn btn-primary" type="submit" value="No"/>
-    </form>
 </div>
 <script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
 </body>

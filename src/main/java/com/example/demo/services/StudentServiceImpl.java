@@ -29,9 +29,10 @@ public class StudentServiceImpl implements StudentService {
         return students;
     }
 
-    public void leftShiftId(){
-        for(int i=0; i<students.size(); i++){
-            students.get(i).setStudentId(students.get(i).getStudentId()-1);
+    public void leftShiftId(int id){
+        for(int i=id; i<students.size(); i++){
+            Student student = students.get(i);
+            student.setStudentId(student.getStudentId()-1);
         }
     }
 }

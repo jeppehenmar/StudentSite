@@ -39,9 +39,23 @@ public class HomeController {
         return "redirect:/";
     }
 
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable("id") int id, Model model){
+        model.addAttribute("student", new Student());
+        model.addAttribute("students", studentService.fetchAllStudents());
+        return "edit";
+    }
+
+    @PostMapping("/edit")
+    public String edit(@ModelAttribute Student student, Model model){
+
+        model.addAttribute("students", studentService.fetchAllStudents());
+        return "redirect:/";
+    }
+
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") int id, Model model){
-        model.addAttribute("student", new Student());
+        model.addAttribute("student", studentService.fetchAllStudents().get(id));
         model.addAttribute("students", studentService.fetchAllStudents());
         return "delete";
     }
@@ -49,8 +63,8 @@ public class HomeController {
     @PostMapping("/delete")
     public String delete(@ModelAttribute Student student, Model model){
         int id = student.getStudentId();
-        studentService.fetchAllStudents().remove(id);
-        studentService.leftShiftId();
+        studentService.fetchAllStudents().remove(student.getStudentId());
+        studentService.leftShiftId(id);
         model.addAttribute("students", studentService.fetchAllStudents());
         return "redirect:/";
     }
