@@ -39,16 +39,28 @@ public class HomeController {
         return "redirect:/";
     }
 
+    @GetMapping("/details/{id}")
+    public String details(@PathVariable("id") int id, Model model){
+        model.addAttribute("student", studentService.fetchAllStudents().get(id));
+        return "/details";
+    }
+
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable("id") int id, Model model){
-        model.addAttribute("student", new Student());
+    public String edit(@PathVariable Integer id, Model model){
+        model.addAttribute("student", studentService.fetchAllStudents().get(id));
         model.addAttribute("students", studentService.fetchAllStudents());
         return "edit";
     }
 
     @PostMapping("/edit")
     public String edit(@ModelAttribute Student student, Model model){
-
+        int id = student.getStudentId();
+        for(int i = 0; i < studentService.fetchAllStudents().size(); i++){
+            if(student.getStudentId() == studentService.fetchAllStudents().get(i).getStudentId()){
+                studentService.fetchAllStudents().set(i, student);
+                break;
+            }
+        }
         model.addAttribute("students", studentService.fetchAllStudents());
         return "redirect:/";
     }
